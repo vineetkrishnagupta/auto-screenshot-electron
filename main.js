@@ -28,11 +28,19 @@ async function takeScreenshot() {
   try {
     const img = await screenshot();
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filePath = path.join(__dirname, `screenshot-${timestamp}.png`);
+
+    const screenshotDir = path.join(__dirname, 'screenshot');
+
+    // Create 'screenshot' directory if it doesn't exist
+    if (!fs.existsSync(screenshotDir)) {
+      fs.mkdirSync(screenshotDir);
+    }
+
+    const filePath = path.join(screenshotDir, `screenshot-${timestamp}.png`);
 
     fs.writeFileSync(filePath, img);
     console.log('Screenshot saved to', filePath);
-    
+
     // Send success message to renderer
     mainWindow.webContents.send('screenshot-taken', `Screenshot saved to ${filePath}`);
   } catch (error) {

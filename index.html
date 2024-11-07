@@ -5,23 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auto Screenshot </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="stopwatch">
-    <div class="time" id="timerDisplay">00:00:00</div>
-    <div class="buttons">
-      <button class="start" id="startButton">Start</button>
-      <button class="reset" id="pauseButton">Pause</button>
-
-      <button class="stop" id="stopButton">Stop</button>
-      <!-- <p id="timerDisplay">Timer: 00:00</p> Timer display -->
+  <div>
+    <div>
+      <!-- <h3>Time now</h3> -->
     </div>
-    <p id="statusMessage"></p>
-
+    <div>
+      <div class="stopwatch">
+        <div class="time" id="timerDisplay">00:00:00</div>
+        <div class="buttons">
+          <button class="btn-success" id="startButton">Start</button>
+          <button class="btn-warning disabled" disabled id="pauseButton">Pause</button>
+          <button class="btn-danger disabled" disabled id="stopButton">Stop</button>
+        </div>
+        <p id="statusMessage" style="display: none;"></p>
+    
+      </div>
+    </div>
   </div>
+ 
   <script src="renderer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 </body>
 
