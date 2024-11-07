@@ -17,16 +17,14 @@ startButton.addEventListener('click', () => {
     // Resume if it was paused
     isPaused = false;
     pauseButton.textContent = 'Pause';
-    startTimer();
-    ipcRenderer.send('start-screenshots');
-  } else {
-    ipcRenderer.send('start-screenshots');
-    statusMessage.textContent = 'Taking screenshots every 5 seconds...';
-    startTimer();
   }
+  statusMessage.textContent = 'Taking screenshots every 5 seconds...';
+  ipcRenderer.send('start-screenshots');
+  ipcRenderer.send('minimize-window');
   startButton.disabled = true
   stopButton.disabled = false
   pauseButton.disabled = false
+  startTimer();
 });
 
 // Stop taking screenshots and reset the timer
@@ -50,8 +48,6 @@ pauseButton.addEventListener('click', () => {
     startTimer();
     statusMessage.textContent = 'Resumed screenshot capturing.';
     startButton.disabled = true
-    stopButton.disabled = false
-    pauseButton.disabled = false
   } else {
     // Pause the timer
     isPaused = true;
@@ -60,9 +56,10 @@ pauseButton.addEventListener('click', () => {
     clearInterval(timerInterval); // Stop the timer
     statusMessage.textContent = 'Paused screenshot capturing.';
     startButton.disabled = false
-    stopButton.disabled = false
-    pauseButton.disabled = false
+
   }
+  stopButton.disabled = false
+  pauseButton.disabled = false
 });
 
 // Listen for feedback from the main process

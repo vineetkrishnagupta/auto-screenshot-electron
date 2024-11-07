@@ -63,6 +63,13 @@ function stopScreenshots() {
   mainWindow.webContents.send('screenshot-stopped', 'Screenshot capturing stopped.');
 }
 
+// Minimize the app window
+ipcMain.on('minimize-window', () => {
+  if (mainWindow) {
+    mainWindow.minimize();
+  }
+});
+
 // Listen for start/stop requests from the renderer process
 ipcMain.on('start-screenshots', startScreenshots);
 ipcMain.on('stop-screenshots', stopScreenshots);
